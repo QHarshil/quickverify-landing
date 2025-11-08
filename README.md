@@ -37,4 +37,4 @@ src/
 
 ## Linking to the SDK
 
-This site links to the main SDK repository (or npm package) in its CTA buttons. Update the URLs in `src/pages/Home.tsx` if you publish under a different namespace.
+CTA buttons point to the QuickVerify SDK repository at [github.com/QHarshil/quickverify-sdk](https://github.com/QHarshil/quickverify-sdk); adjust the URLs in `src/pages/Home.tsx` if the SDK ever lives elsewhere.
