@@ -38,3 +38,13 @@ src/
 ## Linking to the SDK
 
 CTA buttons point to the QuickVerify SDK repository at [github.com/QHarshil/quickverify-sdk](https://github.com/QHarshil/quickverify-sdk); adjust the URLs in `src/pages/Home.tsx` if the SDK ever lives elsewhere.
+
+## Deployment (GitHub Pages)
+
+This repository includes `.github/workflows/deploy.yml`, which:
+
+1. Checks out `main`, installs dependencies with `npm ci`, and runs `npm run build`.
+2. Uploads the `dist/` folder as a Pages artifact.
+3. Publishes to the `gh-pages` branch via `actions/deploy-pages`.
+
+To use it, enable GitHub Pages for the repo and select “GitHub Actions” as the source. No build artifacts need to be committed—GitHub Actions generates them every push to `main`.
