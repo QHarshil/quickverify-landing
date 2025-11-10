@@ -44,14 +44,3 @@ src/
 ├─ contexts/ThemeContext.tsx
 └─ index.css           # Tailwind tokens + base styles
 ```
-
-## Linking to the SDK
-
-CTA buttons point to the QuickVerify SDK repository at [github.com/QHarshil/quickverify-sdk](https://github.com/QHarshil/quickverify-sdk); adjust the URLs in `src/pages/Home.tsx` if the SDK ever lives elsewhere.
-
-## Deploying to `qharshil.ca/quickverify`
-
-1. From this repo, run `npm run build`.  
-2. In your portfolio repo (the one backing `qharshil.ca`), create or clear a folder named `quickverify`.  
-3. Copy the contents of this repo’s `dist/` into that folder (`index.html`, `404.html`, `assets/`, `favicon.svg`).  
-4. Commit and deploy your portfolio site as usual. The QuickVerify landing page will now live at `https://qharshil.ca/quickverify/`.
