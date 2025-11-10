@@ -7,6 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import overviewImg from "@/assets/screens/overview.png";
+import flowImg from "@/assets/screens/flow.png";
 import {
   CheckCircle,
   Code,
@@ -113,7 +115,37 @@ example/
   },
 ];
 
+const screenshots = [
+  {
+    src: overviewImg,
+    alt: "QuickVerify Playground overview screen",
+  },
+  {
+    src: flowImg,
+    alt: "Verification flow screen inside the playground",
+  },
+];
+
+const navItems = [
+  { id: "features", label: "Features" },
+  { id: "docs", label: "Documentation" },
+  { id: "examples", label: "Examples" },
+  { id: "architecture", label: "Architecture" },
+];
+
 export default function Home() {
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+      const base = import.meta.env.BASE_URL.endsWith("/")
+        ? import.meta.env.BASE_URL.slice(0, -1)
+        : import.meta.env.BASE_URL;
+      const nextUrl = base ? `${base}#${id}` : `#${id}`;
+      window.history.replaceState(null, "", nextUrl);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -123,18 +155,16 @@ export default function Home() {
             <span className="text-xl font-bold">QuickVerify SDK</span>
           </div>
           <nav className="flex items-center gap-6 text-sm font-medium text-muted-foreground">
-            <a href="#features" className="transition-colors hover:text-foreground">
-              Features
-            </a>
-            <a href="#docs" className="transition-colors hover:text-foreground">
-              Documentation
-            </a>
-            <a href="#examples" className="transition-colors hover:text-foreground">
-              Examples
-            </a>
-            <a href="#architecture" className="transition-colors hover:text-foreground">
-              Architecture
-            </a>
+            {navItems.map(item => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => scrollToSection(item.id)}
+                className="transition-colors hover:text-foreground"
+              >
+                {item.label}
+              </button>
+            ))}
             <Button asChild size="sm">
               <a href="https://github.com/QHarshil/quickverify-sdk" target="_blank" rel="noreferrer">
                 <Github className="mr-2 h-4 w-4" /> GitHub
@@ -158,10 +188,8 @@ export default function Home() {
               </p>
             </div>
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" asChild>
-                <a href="#docs">
-                  <Download className="mr-2 h-5 w-5" /> Get Started
-                </a>
+              <Button size="lg" onClick={() => scrollToSection("docs")}>
+                <Download className="mr-2 h-5 w-5" /> Get Started
               </Button>
               <Button size="lg" variant="outline" asChild>
                 <a href="https://github.com/QHarshil/quickverify-sdk" target="_blank" rel="noreferrer">
@@ -201,13 +229,36 @@ if (result.success) {
           </Card>
         </section>
 
+        <section className="bg-muted/20 py-16">
+          <div className="container space-y-8">
+            <div className="text-center space-y-3">
+              <h2 className="text-3xl font-bold">Playground Screens</h2>
+              <p className="text-muted-foreground">
+                Direct captures from the sample React Native app bundled with the SDK.
+              </p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2">
+              {screenshots.map(screenshot => (
+                <div
+                  key={screenshot.alt}
+                  className="rounded-2xl border border-border/60 bg-background/80 p-4 shadow-sm"
+                >
+                  <img
+                    src={screenshot.src}
+                    alt={screenshot.alt}
+                    className="mx-auto rounded-xl border border-border/40 bg-gray-950 object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section id="features" className="bg-muted/30 py-20">
           <div className="container space-y-16">
             <div className="text-center space-y-4">
               <h2 className="text-3xl font-bold">What the project actually ships</h2>
-              <p className="text-muted-foreground">
-                Every feature below exists in the repository—no filler, no AI fluff.
-              </p>
+              <p className="text-muted-foreground">Everything listed below lives in the GitHub repo.</p>
             </div>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {features.map(feature => (

@@ -30,6 +30,7 @@ The build artifacts land in `dist/`. The folder contains:
 - `404.html` (SPA fallback redirecting to `/quickverify/`)
 - `assets/…` (JS + CSS)
 - `favicon.svg`
+- screenshots copied from `src/assets/screens`
 
 You can copy that folder anywhere and serve it from `/quickverify/` on any host (e.g., `qharshil.ca/quickverify`).
 
